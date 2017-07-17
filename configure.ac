@@ -26,8 +26,10 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 GTK_REQUIRED_VERSION=3.14.0
 PANEL_REQUIRED_VERSION=1.17.0
-INDICATOR_REQUIRED_VERSION=0.3.90
-INDICATOR_NG_VERSION=12.10.2
+#INDICATOR_REQUIRED_VERSION=0.3.90
+#INDICATOR_NG_VERSION=12.10.2
+INDICATOR_REQUIRED_VERSION=0.6
+INDICATOR_NG_VERSION=0.6
 
 PKG_CHECK_MODULES(APPLET, gtk+-3.0 >= $GTK_REQUIRED_VERSION
                           x11
@@ -37,16 +39,16 @@ PKG_CHECK_MODULES(APPLET, gtk+-3.0 >= $GTK_REQUIRED_VERSION
 AC_SUBST(APPLET_CFLAGS)
 AC_SUBST(APPLET_LIBS)
 
-PKG_CHECK_EXISTS(indicator3-0.4 >= $INDICATOR_NG_VERSION,
+PKG_CHECK_EXISTS(ayatana-indicator3-0.4 >= $INDICATOR_NG_VERSION,
                  [have_indicator_ng="yes"],
                  [have_indicator_ng="no"])
 
 if test "x$have_indicator_ng" = "xyes"; then
-    PKG_CHECK_MODULES(INDICATOR, indicator3-0.4 >= $INDICATOR_NG_VERSION
-                      libido3-0.1 >= 13.10,
+    PKG_CHECK_MODULES(INDICATOR, ayatana-indicator3-0.4 >= $INDICATOR_NG_VERSION
+                      libayatana-ido3-0.4 >= 0.4,
                       [AC_DEFINE(HAVE_INDICATOR_NG, 1, "New style indicators support")])
 else
-    PKG_CHECK_MODULES(INDICATOR, indicator3-0.4 >= $INDICATOR_REQUIRED_VERSION)
+    PKG_CHECK_MODULES(INDICATOR, ayatana-indicator3-0.4 >= $INDICATOR_REQUIRED_VERSION)
 fi
 
 AC_SUBST(INDICATOR_CFLAGS)
@@ -67,8 +69,8 @@ if test "x$with_localinstall" = "xyes"; then
 	INDICATORDIR="${libdir}/indicators/2/"
 	INDICATORICONSDIR="${datadir}/indicator-applet/icons/"
 else
-	INDICATORDIR=`$PKG_CONFIG --variable=indicatordir indicator3-0.4`
-	INDICATORICONSDIR=`$PKG_CONFIG --variable=iconsdir indicator3-0.4`
+	INDICATORDIR=`$PKG_CONFIG --variable=indicatordir ayatana-indicator3-0.4`
+	INDICATORICONSDIR=`$PKG_CONFIG --variable=iconsdir ayatana-indicator3-0.4`
 fi
 
 AC_SUBST(INDICATORDIR)

@@ -28,18 +28,18 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include <libindicator/indicator-object.h>
+#include <libayatana-indicator/indicator-object.h>
 
 /* For new style indicators */
 #if HAVE_INDICATOR_NG
-#include <libido/libido.h>
-#include <libindicator/indicator-ng.h>
+#include <libayatana-ido/libayatana-ido.h>
+#include <libayatana-indicator/indicator-ng.h>
 #endif
 
 #include "tomboykeybinder.h"
 
 static gchar * indicator_order[] = {
-	"libapplication.so",
+	"libayatana-application.so",
 	"libmessaging.so",
 	"libsoundmenu.so",
 	"libdatetime.so",
